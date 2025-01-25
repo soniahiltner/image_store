@@ -33,7 +33,7 @@ export async function dbConnect() {
   }
   try {
     cached.conn = await cached.promise
-  } catch (error) {
+  } catch {
     cached.promise = null
   }
 
