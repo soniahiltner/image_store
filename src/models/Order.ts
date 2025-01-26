@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models, mongo } from 'mongoose'
+import mongoose, { Schema, model, models } from 'mongoose'
 import { ImageVariant, ImageVariantType } from "./Product"
 
 interface PopulatedUser {
@@ -17,8 +17,8 @@ export interface IOrder {
   userId: mongoose.Types.ObjectId | PopulatedUser;
   productId: mongoose.Types.ObjectId | PopulatedProduct;
   variant: ImageVariant;
-  razorpayOrderId: string;
-  razorpayPaymentId?: string;
+  stripeOrderId: string;
+  stripePaymentId?: string;
   amount: number;
   status: "pending" | "completed" | "failed";
   downloadUrl?: string;
@@ -57,11 +57,11 @@ const orderSchema = new Schema<IOrder>(
         enum: ['personal', 'commercial']
       }
     },
-    razorpayOrderId: {
+    stripeOrderId: {
       type: String,
       required: true
     },
-    razorpayPaymentId: {
+    stripePaymentId: {
       type: String,
       required: true
     },
